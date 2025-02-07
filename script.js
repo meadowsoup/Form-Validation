@@ -24,3 +24,8 @@ function hideError() {
 form.addEventListener('submit', function(e) {
      e.preventDefault();
 });
+
+// focus on input field with error
+function focusOnError(inputEle) {
+     inputEle.focus();
+}
