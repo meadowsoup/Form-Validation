@@ -109,3 +109,27 @@ if (!terms.checked) {
      focusOnError(terms);
      return;
 }
+
+//* Check if username is taken
+const users = JSON.parse(localStorage.getItem('users')) || [];
+const usernameExists = users.some(user => user.username.toLowerCase() === username.value.toLowerCase());
+
+if (usernameExists) {
+     showError("Username already taken 🤡");
+     focusOnError(username);
+     return;
+}
+
+//* store user data in local storage
+const user = {
+     username: username.value.toLowerCase(),
+     email: email.value.toLowerCase(),
+     password: password.value
+};
+users.push(user);
+localStorage.setItem('users', JSON.stringify(users));
+
+//* clear form fields and show success message
+form.reset();
+hideError();
+alert("Registration Successful! 🎊")
